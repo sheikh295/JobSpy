@@ -236,6 +236,15 @@ class DescriptionFormat(Enum):
     HTML = "html"
     PLAIN = "plain"
 
+
+class RecruiterSignup(BaseModel):
+    email: str | None = None
+    password: str | None = None
+    fullName: str | None = None
+    userType: str | None = None
+    phone: str | None = None
+    location: str | None = None
+
 class JobPost(BaseModel):
     id: str | None = None
     title: str
@@ -287,12 +296,6 @@ class JobResponse(BaseModel):
 class Site(Enum):
     LINKEDIN = "linkedin"
     INDEED = "indeed"
-    ZIP_RECRUITER = "zip_recruiter"
-    GLASSDOOR = "glassdoor"
-    GOOGLE = "google"
-    BAYT = "bayt"
-    NAUKRI = "naukri"
-    BDJOBS = "bdjobs"  # Add this line
 
 
 class SalarySource(Enum):
