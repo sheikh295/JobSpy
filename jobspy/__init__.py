@@ -19,7 +19,6 @@ from jobspy.util import (
     map_str_to_site,
     convert_to_annual,
 )
-from jobspy.ziprecruiter import ZipRecruiter
 
 RECRUITER_SIGNUP_TEMPLATE = {
     "email": None,
@@ -101,6 +100,7 @@ def build_recommended_record(job: dict) -> dict:
         salary_range = f"{job.get('currency') or 'USD'} {job.get('min_amount')} - {job.get('max_amount')} {job.get('interval') or ''}".strip()
 
     return {
+        "site": job.get("site"),
         "sourceJobUrl": job.get("job_url") or job.get("job_url_direct"),
         "recruiterSignup": RECRUITER_SIGNUP_TEMPLATE.copy(),
         "companyProfile": {
@@ -124,6 +124,10 @@ def build_recommended_record(job: dict) -> dict:
             "contactPhone": None,
             "verificationDocument": None,
         },
+        "min_amount": job.get("min_amount"),
+        "max_amount": job.get("max_amount"),
+        "currency": job.get("currency") or None,
+        "interval": job.get("interval"),
         "job": {
             "isAnonymous": False,
             "directUrl": job.get("job_url_direct") or job.get("job_url"),
